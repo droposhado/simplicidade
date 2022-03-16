@@ -1,0 +1,11 @@
+{
+    "repo_host": "https://github.com",
+    "user": "droposhado",
+    "project": "simplicidade",
+    "description": "minimalist theme",
+    "tecnologies": [
+        "hugo",
+        "html",
+        "css"
+    ]
+}

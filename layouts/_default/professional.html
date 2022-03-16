@@ -1,0 +1,95 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    <div class="row">
+      <div class="col gy-4 text-center">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4">
+        {{ .Content }}
+      </div>
+    </div>
+
+    {{ with index .Site.Data.professional.work .Site.Language.Lang }}
+      {{ range $index, $element := sort . "id" "desc" }}
+        <div class="row">
+          <div class="col gy-4">
+            <h3 id="{{ $element.name | urlize }}-{{ $element.job | urlize }}">
+              {{ $element.job }}
+            </h3>
+            <p>
+              <a href="{{ $element.site }}">{{ $element.name }}</a> (<code>{{ dateFormat "2006-01" $element.start }}</code>, <code>{{ dateFormat "2006-01" $element.end }}</code>)
+            </p>
+            {{ $element.description | markdownify }}
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ with index .Site.Data.professional.education }}
+      <div class="row">
+        <div class="col gy-4">
+          <h1 id="{{ i18n "education" | urlize }}">
+            {{ i18n "education" }}
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col gy-4">
+          <ul>
+            {{ range $index, $element := sort . "id" "desc" }}
+              <li>
+                <a href="{{ $element.site }}">
+                  {{ $element.name }}
+                </a> - {{ $element.university }} - {{ dateFormat "2006" $element.end }}
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    {{ end }}
+
+    {{ with index .Site.Data.professional.courses }}
+      {{ if gt .Site.Data.professional.courses 0 }}
+        <div class="row">
+          <div class="col gy-4">
+            <h1 id="{{ i18n "course" | urlize }}">
+              {{ i18n "course" }}
+            </h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col gy-4">
+            <ul>
+              {{ range $index, $element := sort . "id" "desc" }}
+                {{- if $element.show }}
+                  <li>
+                    <a href="{{ $element.url.site }}">
+                      {{ $element.name }}
+                    </a>
+                    - {{ $element.organization.name }}
+                    - <a href="{{ $element.url.certificate }}">
+                      {{ i18n "certificate" }}
+                    </a>
+                    - {{ dateFormat "2006" $element.end }}
+                  </li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

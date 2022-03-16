@@ -1,0 +1,152 @@
+baseurl = "https://example.com/"
+languageCode = "en"
+theme = "simplicidade"
+
+pygmentsUseClasses = true
+
+enableGitInfo = true
+
+[author]
+  name = "exauthor"
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = false
+    style = "dracula"
+    tabWidth = 4
+
+[params]
+
+  # Logo in
+  logoImg = "https://via.placeholder.com/200"
+  logoLink = "/"
+
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 4
+
+  # Show reading time in minutes for posts (not exist in theme)
+  showReadingTime = false
+
+  enableToc = false
+  enableRobotsTXT = true
+
+  enableRSS = true
+
+  disableReadOtherPosts = true
+
+  # Required in footer to go git commit
+  gitUrl = "https://github.com/USERNAME/blog/commit/"
+
+  # USERNAME is your username in Twitch, this link is displayed in index
+  # at read more link
+  twitchVideosUrl = "https://twitch.tv/USERNAME/videos"
+
+  # When you use contact layout, form submit for this url
+  contactFormUrl = "https://example.com/form"
+
+  # Integrate Javascript files or stylesheets by adding the url to the external assets or by
+  # linking local files with their path relative to the static folder, e.g. "css/styles.css"
+  # customCSS = ["/css/align.css", "/css/form.css", "/css/post.css", "/css/footer.css"]
+  customCSS = ["/css/footer.css"]
+  # customJS  = []
+
+  # Toggle this option need to rebuild SCSS, requires extended version of Hugo
+  justifyContent = true  # Set "text-align: justify" to .post-content.
+
+  # Limit posts on home
+  postsListLimit = 5
+
+  # Limit projects on home
+  projectsListLimit = 5
+
+  # Project description truncate
+  projectDescTruncate = 60
+
+  # Limit lives on home
+  livesListLimit = 5
+
+  # Social icons
+  [[params.site]]
+    name = "posts"
+    url  = "https://example.com/posts"
+    disabled = false
+
+[[params.site]]
+    name = "home"
+    url  = "https://example.com"
+    disabled = false
+
+  [[params.social]]
+    name = "github"
+    username = "USERNAME"
+    icon = "github"
+    url  = "https://github.com"
+    disabled = false
+
+  [[params.social]]
+    name = "twitter"
+    username = "USERNAME"
+    icon = "twitter"
+    url  = "https://twitter.com"
+    disabled = false
+
+  [[params.social]]
+    name = "twitch"
+    username = "USERNAME"
+    icon = "twitch"
+    url  = "https://twitch.tv"
+    disabled = false
+
+[languages]
+
+  [languages.en]
+    title = "my title"
+    # subtitle = ""
+    # keywords = ""
+    copyright = "<a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>"
+    disclaimer = "discleamer is here"
+    dateFormatSingle = "Jan 2, 2006 15:04"
+    dateFormatList = "2006-01-02"
+    weight = 1
+
+      [languages.en.menu]
+
+        [[languages.en.menu.main]]
+          identifier = "now"
+          name       = "now"
+          url        = "/now/"
+
+        [[languages.en.menu.main]]
+          identifier = "after"
+          name       = "after"
+          url        = "/after/"
+
+  [languages.pt-br]
+    title = "meu titulo"
+    # subtitle = ""
+    # keywords = ""
+    copyright = "<a href=\"https://creativecommons.org/licenses/by-nc/4.0/\">CC BY-NC 4.0</a>"
+    disclaimer = "aviso é aqui"
+    dateFormatSingle = "Jan 2, 2006 15:04"
+    dateFormatList = "2006-01-02"
+    weight = 2
+
+      [languages.pt-br.menu]
+
+        [[languages.pt-br.menu.main]]
+          identifier = "agora"
+          name       = "agora"
+          url        = "/agora/"
+
+        [[languages.pt-br.menu.main]]
+          identifier = "before"
+          name       = "before"
+          url        = "/before/"

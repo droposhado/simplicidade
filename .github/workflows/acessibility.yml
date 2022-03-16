@@ -1,0 +1,40 @@
+
+name: acessibility
+
+on:
+
+  push:
+    branches: main
+
+jobs:
+
+  pa11y:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          # submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.94.2'
+          extended: true
+
+      - name: Server
+        run: |
+          cd exampleSite || exit 1
+          mkdir themes || exit 1
+          ln -sfn $PWD/.. $PWD/themes/simplicidade
+          hugo server -w --noHTTPCache --disableFastRender -v --minify &
+
+      - name: Install pa11y-ci
+        run: npm install -g pa11y-ci
+
+      - name: pa11y check en
+        run: pa11y-ci --sitemap http://localhost:1313/en/sitemap.xml
+
+      - name: pa11y check pt-br
+        run: pa11y-ci --sitemap http://localhost:1313/pt-br/sitemap.xml

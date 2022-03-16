@@ -1,0 +1,111 @@
+{{ define "main" }}
+      <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    <div class="row">
+      <div class="col gy-4">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col gy-4">
+        {{ .Content }}
+      </div>
+    </div>
+
+    {{ with index .Site.Data.projects .Site.Language.Lang }}
+      <div class="row">
+        <div class="col gy-5">
+          <h2>{{ i18n "projects" }}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col gy-4">
+          <ul class="list-unstyled">
+            {{ range $index, $element := sort . "project" }}
+              {{ if lt $index $.Site.Params.projectsListLimit }}
+                <li>
+                  <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}">
+                    {{ $element.project }}
+                  </a>: {{ $element.description | markdownify | truncate $.Site.Params.projectDescTruncate }}
+                </li>
+              {{ end }}
+            {{ end }}
+          </ul>
+          <p>
+            <a href="/{{ i18n "projects" | lower }}/">
+              {{ i18n "seeMore" }}
+            </a>
+          </p>
+        </div>
+      </div>
+    {{ end }}
+
+    <div class="row">
+      <div class="col gy-4">
+        <h2>Posts</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4">
+        <ul class="list-unstyled">
+          {{- range first .Site.Params.postsListLimit (where .Paginator.Pages "Params.hidden" "ne" "true") }}
+            <li>
+              {{ .Date.Format "2006-01-02" }}
+              <a href="{{ .Permalink }}">
+                {{ .Title }}
+              </a>
+            </li>
+          {{- end }}
+        </ul>
+        <p>
+          <a href="posts">
+            {{ i18n "seeMore" }}
+          </a>
+        </p>
+      </div>
+    </div>
+
+    {{ with .Site.Data.now.weekly.twitch.latest }}
+      {{ if gt ._total "0" }}
+        <div class="row">
+          <div class="col gy-5">
+            <h2>Lives</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col gy-4">
+            <ul class="list-unstyled">
+              {{- range $l, $lval := .videos }}
+                <!-- Limit items in home page list-->
+                {{ if lt $l $.Site.Params.livesListLimit }}
+                  <li>
+                    {{ dateFormat "2006-01-02" .published_at }}
+                    <a href="{{ .url }}">
+                      {{ .title }}
+                    </a>
+                    (<i>{{ .game }}</i>)
+                  </li>
+                {{- end }}
+              {{- end }}
+            </ul>
+            <p>
+              <a href="{{ .Site.Params.twitchVideosUrl }}">
+                {{ i18n "seeMore" }}{{ .Site.Params.twitchVideosUrl }}{{ .Site.twitchVideosUrl }}
+              </a>
+            </p>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

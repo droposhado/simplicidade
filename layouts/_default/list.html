@@ -1,0 +1,50 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    {{ $paginator := .Paginate .Data.Pages }}
+    {{ range $paginator.Pages.GroupByDate "2006" }}
+      <div class="row">
+        <div class="col gy-4 text-center">
+          <h1>
+            {{ .Key }}
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col gy-4 text-center">
+          {{ range .Pages }}
+            <p>
+              <a href="{{.Permalink}}">
+                {{.Title}}
+              </a>
+              <br />
+              <small class="text-muted">
+                {{ if .Site.Params.dateformShort }}
+                  {{ .Date.Format .Site.Params.dateformShort }}
+                {{ else }}
+                  {{ .Date.Format "Jan 02"}}
+                {{ end }}
+              </small>
+              {{ if .Params.Categories }}
+                {{ range .Params.Categories }}
+                  <a href="{{ "categories/" | absLangURL }}{{ . | urlize }}/">
+                    <span class="badge bg-light text-dark">
+                      {{ . }}
+                    </span>
+                  </a>
+                {{ end }}
+              {{ end }}
+            </p>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

@@ -1,0 +1,71 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    <div class="row">
+      <div class="col gy-4 text-center">
+        <h1>{{ .Title }}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4">
+        {{ .Content }}
+      </div>
+    </div>
+
+    <!-- Get the week number straight from what I'm studying -->
+    {{ with index .Site.Data.study }}
+      {{ range first 1 (sort . "id" "desc") }}
+        <div class="row">
+          <div class="col gy-4">
+            <h2 id="{{ i18n "study"  | urlize }}">
+              {{ i18n "study" }} ({{ .year }}-w{{ .week }})
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col gy-4">
+            <ul>
+              {{ range .topics }}
+                <li>
+                  {{ . }}
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }} 
+
+    <div class="row">
+      <div class="col gy-4">
+        <!-- Books are not language-switched because that caracterizes another ISBN -->
+        <h2 id="{{ i18n "reading" | urlize }}">
+          {{ i18n "reading" }}
+        </h2>
+      </div>
+    </div>
+
+    {{ with .Site.Data.books }}
+      <div class="row">
+        <div class="col gy-4">
+          <ul>
+            {{ range (sort . "title" "desc") }}
+              {{ if eq .state "reading" }}
+                <li>
+                  {{ .title }}{{ if .sub_title }}: {{ .sub_title }}{{ end }}
+                </li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

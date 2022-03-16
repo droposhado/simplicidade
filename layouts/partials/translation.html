@@ -1,0 +1,21 @@
+{{ if .IsTranslated }}
+  <div class="row">
+    <div class="col gy-5">
+      <div class="text-center">
+        <small class="text-muted">
+          <!-- current language -->
+          <strong>
+            {{ $.Page.Lang }}
+          </strong>
+
+          <!-- available languages -->
+          {{ range $.AllTranslations }}
+            {{ if ne $.Page.Lang .Language.Lang }}
+              | <a href="{{ .Permalink }}" class="text-reset">{{ .Language.Lang }}</a>
+            {{ end }}
+          {{ end}}
+        </small>
+      </div>
+    </div>
+  </div>
+{{ end }}

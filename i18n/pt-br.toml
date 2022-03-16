@@ -1,0 +1,47 @@
+[book]
+other = "Livro"
+
+[certificate]
+other = "certificado"
+
+[course]
+other = "Cursos"
+
+[education]
+other = "Educação"
+
+[email]
+other = "Email"
+
+[madeWith]
+other = "Feito com"
+
+[message]
+other = "Mensagem"
+
+[nameStr]
+other = "Nome"
+
+[projects]
+other = "Projetos"
+
+[reading]
+other = "Leitura"
+
+[seeMore]
+other = "Ver todos"
+
+[study]
+other = "Estudo"
+
+[subject]
+other = "Assunto"
+
+[submit]
+other = "Enviar"
+
+[week]
+other = "Semana"
+
+[using]
+other = "usando"

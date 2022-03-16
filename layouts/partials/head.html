@@ -1,0 +1,23 @@
+<title>
+  {{ if .IsHome }}
+    {{ .Title }}
+  {{ else }}
+    {{ .Title }} - {{ $.Site.Author.name }}
+  {{ end }}
+</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="/css/bootstrap/5.0.2/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="/css/bootstrap-icons/1.5.0/bootstrap-icons.css" rel="stylesheet">
+<link href="/css/syntaxhighlight/dracula.css" rel="stylesheet">
+<link href="/css/syntaxhighlight/custom.css" rel="stylesheet">
+
+{{ range $val := $.Site.Params.customCSS }}
+  {{ if gt (len $val) 0 }}
+    <link rel="stylesheet" type="text/css" href="{{ $val }}">
+  {{ end }}
+{{ end }}

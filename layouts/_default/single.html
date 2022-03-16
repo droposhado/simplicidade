@@ -1,0 +1,47 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    <div class="row">
+      <div class="col gy-4 text-center">
+        {{ if .Date }}
+          <small class="text-muted">
+            {{ dateFormat $.Site.Params.dateFormatSingle .Date }}
+          </small>
+        {{ end }}
+
+        {{ if .Params.Categories }}
+          {{ range .Params.Categories }}
+            <a href="{{ "categories/" | absLangURL }}{{ . | urlize }}/">
+              <span class="badge bg-light text-dark">{{ . }}</span>
+            </a>
+          {{ end }}
+        {{ end }}
+        <h1>{{ .Title | markdownify }}</h1>
+      </div>
+    </div>
+
+    {{ if .Params.toc }}
+      <div class="row">
+        <div class="col gy-4">
+          <h2>
+            {{ i18n "tableOfContents" }}
+          </h2>
+          {{ .TableOfContents }}    
+        </div>
+      </div>
+    {{ end }}
+
+    <div class="row">
+      <div class="col gy-4">
+        {{ .Content }}
+      </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

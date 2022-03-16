@@ -1,0 +1,13 @@
+{{ if .Site.Menus.main }}
+  <header class="d-flex justify-content-center py-4">
+    <ul class="nav nav-pills nav-fill">
+      {{ range .Site.Menus.main -}}
+        <li class="nav-item">
+          <a href="{{ .URL }}" class="nav-link">
+            {{ .Name }}
+          </a>
+        </li>
+      {{- end }}
+    </ul>
+  </header>
+{{- end }}

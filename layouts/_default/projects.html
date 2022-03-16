@@ -1,0 +1,51 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    <div class="row">
+      <div class="col gy-4 text-center">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4">
+        {{ .Content }}
+      </div>
+    </div>
+
+    {{ with index .Site.Data.projects .Site.Language.Lang }}
+      {{ range $index, $element := sort . "project" "asc" }}
+        <div class="row">
+          <div class="col gy-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  {{ $element.project }}
+                </h5>
+                <p class="card-text">
+                  {{ $element.description | markdownify }}
+                </p>
+                <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}" class="card-link">
+                  repository
+                </a>
+                {{ if $element.url }}
+                  <a href="{{ $element.url }}" class="card-link">
+                    site
+                  </a>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

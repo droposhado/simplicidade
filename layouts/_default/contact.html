@@ -1,0 +1,52 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ partial "nav.html" . }}
+
+    <div class="row">
+      <div class="col gy-4 text-center">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4">
+        {{ .Content }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4">
+        <form id="contact" action="{{ .Site.Params.contactFormUrl }}" method="POST">
+          <div class="form-floating mb-3">
+            <input class="form-control" id="name" name="{{ i18n "nameStr" }}"
+            type="text" placeholder="{{ i18n "nameStr" }}" />
+            <label for="name">{{ i18n "nameStr" }}</label>
+          </div>  
+          <div class="form-floating mb-3">
+            <input class="form-control" id="email" name="{{ i18n "email" }}" type="email" placeholder="{{ i18n "email" }}" />
+            <label for="email">{{ i18n "email" }}</label>
+          </div>  
+          <div class="form-floating mb-3">
+            <input class="form-control" id="subject" name="{{ i18n "subject" }}" type="text" placeholder="{{ i18n "subject" }}" />
+            <label for="subject">{{ i18n "subject" }}</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <textarea class="form-control" id="message" name="{{ i18n "message" }}" type="text" placeholder="{{ i18n "message" }}" style="height: 10rem;"></textarea>
+            <label for="message">{{ i18n "message" }}</label>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-dark btn-md" id="submitButton" type="submit">{{ i18n "submit" }}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}
+

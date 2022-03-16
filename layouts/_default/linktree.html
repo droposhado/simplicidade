@@ -1,0 +1,43 @@
+{{ define "main" }}
+  <div class="container w-50">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    
+    <div class="row">
+      <div class="col gy-5 text-center">
+        <h1>
+          {{ .Title }}
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col gy-4 text-center">
+        {{ .Content }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col gy-4">
+        <div class="d-grid gap-2">
+
+          {{ range $val := $.Site.Params.site }}
+            <a href="{{ $val.url }}" class="btn btn-outline-dark btn-sm {{ if $val.disabled }}disabled{{ end }}" target="_blank" rel="noreferrer">
+              <b>{{ $val.name }}</b>
+            </a>
+          {{ end }}
+
+          {{ range $val := $.Site.Params.social }}
+            <a href="{{ $val.url }}/{{ $val.username }}" class="btn btn-outline-dark btn-sm {{ if $val.disabled }}disabled{{ end }}" target="_blank" rel="noreferrer">
+              <i class="bi bi-{{ $val.icon }}"></i> / <b>{{ $val.username }}</b>
+            </a>
+          {{ end }}
+
+        </div>
+      </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

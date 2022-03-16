@@ -1,0 +1,47 @@
+[book]
+other = "Book"
+
+[certificate]
+other = "certificate"
+
+[course]
+other = "Courses"
+
+[education]
+other = "Education"
+
+[email]
+other = "Email"
+
+[madeWith]
+other = "Made with"
+
+[message]
+other = "Message"
+
+[nameStr]
+other = "Name"
+
+[projects]
+other = "Projects"
+
+[reading]
+other = "Reading"
+
+[seeMore]
+other = "See more"
+
+[study]
+other = "Study"
+
+[subject]
+other = "Subject"
+
+[submit]
+other = "Send"
+
+[week]
+other = "Week"
+
+[using]
+other = "Using"

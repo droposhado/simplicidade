@@ -1,0 +1,57 @@
+<div class="row footer">
+  <div class="col gy-5">
+    <p class="text-center">
+      <small class="text-muted">
+        &copy; {{ now.Format "2006" }}
+        {{ if .Site.Author.name }}
+          <a href="{{ .Site.BaseURL }}">{{ .Site.Author.name }}</a>
+        {{ end }}
+        &nbsp;|&nbsp;
+        {{ if .Site.Params.Copyright }}
+          {{ .Site.Params.Copyright | safeHTML }}
+        {{ end }}
+
+        {{- with (not (in (.Site.Language.Get "disableKinds") "RSS")) }}
+          &nbsp;|&nbsp;
+          <a href="{{ "posts/index.xml" | absLangURL }}" target="_blank" title="rss">
+            rss
+          </a>
+        {{ end }}
+      </small>
+
+      {{ if .GitInfo }}
+        <br />
+        <small class="text-muted">
+            <a href="{{ .Site.Params.gitUrl }}{{ .GitInfo.Hash }}">
+              {{ .GitInfo.Hash }}
+          </a>
+        </small>
+      {{ end }}
+
+      <br />
+      <small class="text-muted">
+        {{ i18n "madeWith" }}
+        <i class="bi bi-cup-straw"></i>
+        {{ i18n "using" | lower }} <a href="http://gohugo.io">Hugo</a> &&
+        <a href="https://github.com/droposhado/simplicidade">simplicidade</a>
+      </small>
+
+      {{ if .Site.Params.Disclaimer }}
+        <br />
+        <small class="text-muted">
+          {{ .Site.Params.Disclaimer | safeHTML }}
+        </small>
+      {{ end }}
+
+      {{ if .Site.Params.gitUrl }}
+        <br />
+        <small class="text-muted">
+          <a href="{{ replace .Site.Params.gitUrl "commit/" "" }}">
+            </>
+          </a>
+        </small>
+      {{ end }}
+    </p>
+
+  </div>
+</div>
