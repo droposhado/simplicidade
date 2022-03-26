@@ -6,7 +6,7 @@
     {{ partial "nav.html" . }}
 
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         <h1>
           {{ .Title }}
         </h1>
@@ -14,19 +14,19 @@
     </div>
 
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         {{ .Content }}
       </div>
     </div>
 
     {{ with index .Site.Data.projects .Site.Language.Lang }}
       <div class="row">
-        <div class="col gy-5">
+        <div class="col-md-8 offset-md-2 gy-5">
           <h2>{{ i18n "projects" }}</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col gy-4">
+        <div class="col-md-8 offset-md-2 gy-4">
           <ul class="list-unstyled">
             {{ range $index, $element := sort . "project" }}
               {{ if lt $index $.Site.Params.projectsListLimit }}
@@ -48,12 +48,12 @@
     {{ end }}
 
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         <h2>Posts</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         <ul class="list-unstyled">
           {{- range first .Site.Params.postsListLimit (where .Paginator.Pages "Params.hidden" "ne" "true") }}
             <li>
@@ -75,12 +75,12 @@
     {{ with .Site.Data.now.weekly.twitch.latest }}
       {{ if gt ._total "0" }}
         <div class="row">
-          <div class="col gy-5">
+          <div class="col-md-8 offset-md-2 gy-5">
             <h2>Lives</h2>
           </div>
         </div>
         <div class="row">
-          <div class="col gy-4">
+          <div class="col-md-8 offset-md-2 gy-4">
             <ul class="list-unstyled">
               {{- range $l, $lval := .videos }}
                 <!-- Limit items in home page list-->

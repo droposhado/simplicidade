@@ -5,20 +5,20 @@
     {{ partial "logo.html" . }}
     
     <div class="row">
-      <div class="col gy-5 text-center">
+      <div class="col-md-8 offset-md-2 gy-5 text-center">
         <h1>
           {{ .Title }}
         </h1>
       </div>
     </div>
     <div class="row">
-      <div class="col gy-4 text-center">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
         {{ .Content }}
       </div>
     </div>
 
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         <div class="d-grid gap-2">
 
           {{ range $val := $.Site.Params.site }}

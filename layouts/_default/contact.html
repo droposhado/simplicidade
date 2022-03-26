@@ -6,19 +6,19 @@
     {{ partial "nav.html" . }}
 
     <div class="row">
-      <div class="col gy-4 text-center">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
         <h1>
           {{ .Title }}
         </h1>
       </div>
     </div>
     <div class="row">
-      <div class="col gy-4">
-        {{ .Content }}
+      <div class="col-md-8 offset-md-2 gy-4">
+          {{ .Content }}
       </div>
     </div>
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         <form id="contact" action="{{ .Site.Params.contactFormUrl }}" method="POST">
           <div class="form-floating mb-3">
             <input class="form-control" id="name" name="{{ i18n "nameStr" }}"

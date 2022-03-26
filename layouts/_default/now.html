@@ -6,12 +6,12 @@
     {{ partial "nav.html" . }}
 
     <div class="row">
-      <div class="col gy-4 text-center">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
         <h1>{{ .Title }}</h1>
       </div>
     </div>
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         {{ .Content }}
       </div>
     </div>
@@ -20,14 +20,14 @@
     {{ with index .Site.Data.study }}
       {{ range first 1 (sort . "id" "desc") }}
         <div class="row">
-          <div class="col gy-4">
+          <div class="col-md-8 offset-md-2 gy-4">
             <h2 id="{{ i18n "study"  | urlize }}">
               {{ i18n "study" }} ({{ .year }}-w{{ .week }})
             </h2>
           </div>
         </div>
         <div class="row">
-          <div class="col gy-4">
+          <div class="col-md-8 offset-md-2 gy-4">
             <ul>
               {{ range .topics }}
                 <li>
@@ -41,7 +41,7 @@
     {{ end }} 
 
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         <!-- Books are not language-switched because that caracterizes another ISBN -->
         <h2 id="{{ i18n "reading" | urlize }}">
           {{ i18n "reading" }}
@@ -51,7 +51,7 @@
 
     {{ with .Site.Data.books }}
       <div class="row">
-        <div class="col gy-4">
+        <div class="col-md-8 offset-md-2 gy-4">
           <ul>
             {{ range (sort . "title" "desc") }}
               {{ if eq .state "reading" }}

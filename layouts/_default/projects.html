@@ -6,14 +6,14 @@
     {{ partial "nav.html" . }}
 
     <div class="row">
-      <div class="col gy-4 text-center">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
         <h1>
           {{ .Title }}
         </h1>
       </div>
     </div>
     <div class="row">
-      <div class="col gy-4">
+      <div class="col-md-8 offset-md-2 gy-4">
         {{ .Content }}
       </div>
     </div>
@@ -21,7 +21,7 @@
     {{ with index .Site.Data.projects .Site.Language.Lang }}
       {{ range $index, $element := sort . "project" "asc" }}
         <div class="row">
-          <div class="col gy-4">
+          <div class="col-md-8 offset-md-2 gy-4">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">
