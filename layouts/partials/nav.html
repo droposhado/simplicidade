@@ -3,7 +3,7 @@
     <ul class="nav nav-pills nav-fill">
       {{ range .Site.Menus.main -}}
         <li class="nav-item">
-            <a href="{{ .URL }}" id="nav-{{ .Identifier }}" class="nav-link">
+          <a href="{{ .URL }}" id="nav-{{ .Identifier | lower }}" class="nav-link">
             {{ .Name }}
           </a>
         </li>
