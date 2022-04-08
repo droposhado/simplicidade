@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-8 offset-md-2 gy-4">
+      <div class="col-md-8 offset-md-2 gy-5">
         {{ .Content }}
       </div>
     </div>
@@ -21,25 +21,31 @@
     {{ with index .Site.Data.projects .Site.Language.Lang }}
       {{ range $index, $element := sort . "project" "asc" }}
         <div class="row">
-          <div class="col-md-8 offset-md-2 gy-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">
-                  {{ $element.project }}
-                </h5>
-                <p class="card-text">
-                  {{ $element.description | markdownify }}
-                </p>
-                <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}" class="card-link">
-                  repository
-                </a>
-                {{ if $element.url }}
-                  <a href="{{ $element.url }}" class="card-link">
-                    site
-                  </a>
+          <div class="col-md-8 offset-md-2 gy-5">
+            <h2>
+              {{ $element.project }}
+            </h2>
+            <p class="card-text">
+              {{ $element.description | markdownify }}
+            </p>
+            {{ if or $element.repo_host $element.url }}
+              <ul>
+                {{ if $element.repo_host }}
+                  <li>
+                    <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}" class="card-link">
+                      {{ $element.user }}/{{ $element.project }}
+                    </a>
+                  </li>
                 {{ end }}
-              </div>
-            </div>
+                {{ if $element.url }}
+                  <li>
+                    <a href="{{ $element.url }}" class="card-link">
+                      site
+                    </a>
+                  </li>
+                 {{ end }}
+               {{ end }}
+             </ul>
           </div>
         </div>
       {{ end }}
