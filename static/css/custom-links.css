@@ -1,0 +1,7 @@
+a, .nav-link {
+    color: #212529;
+}
+
+a:hover, a:focus, .nav-link:focus, .nav-link:hover {
+    color: #212529;
+}
