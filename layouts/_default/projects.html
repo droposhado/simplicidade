@@ -22,6 +22,12 @@
       {{ range $index, $element := sort . "project" "asc" }}
         <div class="row">
           <div class="col-md-8 offset-md-2 gy-5">
+            {{ if $element.private }}
+              <span class="badge bg-light text-dark">private</span>
+            {{ end }}
+            {{ if $element.state }}
+              <span class="badge bg-light text-dark">{{ $element.state }}</span>
+            {{ end }}
             <h2>
               {{ $element.project }}
             </h2>
@@ -30,7 +36,7 @@
             </p>
             {{ if or $element.repo_host $element.url }}
               <ul>
-                {{ if $element.repo_host }}
+                {{ if and $element.repo_host (not $element.private) }}
                   <li>
                     <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}" class="card-link">
                       {{ $element.user }}/{{ $element.project }}
