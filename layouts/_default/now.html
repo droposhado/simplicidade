@@ -40,25 +40,22 @@
       {{ end }}
     {{ end }} 
 
-    <div class="row">
-      <div class="col-md-8 offset-md-2 gy-4">
-        <!-- Books are not language-switched because that caracterizes another ISBN -->
-        <h2 id="{{ i18n "reading" | urlize }}">
-          {{ i18n "reading" }}
-        </h2>
-      </div>
-    </div>
-
     {{ with .Site.Data.books }}
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4">
+          <!-- Books are not language-switched because that caracterizes another ISBN -->
+          <h2 id="{{ i18n "reading" | urlize }}">
+            {{ i18n "reading" }}
+          </h2>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4">
           <ul>
             {{ range (sort . "title" "desc") }}
-              {{ if eq .state "reading" }}
-                <li>
-                  {{ .title }}{{ if .sub_title }}: {{ .sub_title }}{{ end }}
-                </li>
-              {{ end }}
+              <li>
+                {{ .title }}{{ if .sub_title }}: {{ .sub_title }}{{ end }}
+              </li>
             {{ end }}
           </ul>
         </div>
