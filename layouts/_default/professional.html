@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    {{ with index .Site.Data.professional.work .Site.Language.Lang }}
+    {{ with index .Site.Data.professional.jobs .Site.Language.Lang }}
       {{ range $index, $element := sort . "id" "desc" }}
         <div class="row">
           <div class="col-md-8 offset-md-2 gy-4">
@@ -76,7 +76,7 @@
                       {{ $element.name }}
                     </a>
                     - {{ $element.organization.name }}
-                    - <a href="{{ $element.url.certificate }}">
+                    - <a href="{{ $element.certificate_url }}">
                       {{ i18n "certificate" }}
                     </a>
                     - {{ dateFormat "2006" $element.end }}
