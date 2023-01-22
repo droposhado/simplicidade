@@ -58,33 +58,31 @@
     {{ end }}
 
     {{ with index .Site.Data.professional.courses }}
-      {{ if gt .Site.Data.professional.courses 0 }}
-        <div class="row">
-          <div class="col-md-8 offset-md-2 gy-4">
-            <h1 id="{{ i18n "course" | urlize }}">
-              {{ i18n "course" }}
-            </h1>
-          </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4">
+          <h1 id="{{ i18n "course" | urlize }}">
+            {{ i18n "course" }}
+          </h1>
         </div>
-        <div class="row">
-          <div class="col-md-8 offset-md-2 gy-4">
-            <ul>
-              {{ range $index, $element := sort . "name" "desc" }}
-                <li>
-                  <a href="{{ $element.url.site }}">
-                    {{ $element.name }}
-                  </a>
-                  - {{ $element.organization.name }}
-                  - <a href="{{ $element.certificate_url }}">
-                    {{ i18n "certificate" }}
-                  </a>
-                  - {{ dateFormat "2006" $element.end }}
-                </li>
-              {{ end }}
-            </ul>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4">
+          <ul>
+            {{ range $index, $element := sort . "name" "asc" }}
+              <li>
+                <a href="{{ $element.url.site }}">
+                  {{ $element.name }}
+                </a>
+                - {{ $element.organization.name }}
+                - <a href="{{ $element.certificate_url }}" target="_blank">
+                  {{ i18n "certificate" }}
+                </a>
+                - {{ dateFormat "2006" $element.end }}
+              </li>
+            {{ end }}
+          </ul>
         </div>
-      {{ end }}
+      </div>
     {{ end }}
 
     {{ partial "footer.html" . }}
