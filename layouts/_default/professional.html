@@ -70,18 +70,16 @@
           <div class="col-md-8 offset-md-2 gy-4">
             <ul>
               {{ range $index, $element := sort . "id" "desc" }}
-                {{- if $element.show }}
-                  <li>
-                    <a href="{{ $element.url.site }}">
-                      {{ $element.name }}
-                    </a>
-                    - {{ $element.organization.name }}
-                    - <a href="{{ $element.certificate_url }}">
-                      {{ i18n "certificate" }}
-                    </a>
-                    - {{ dateFormat "2006" $element.end }}
-                  </li>
-                {{ end }}
+                <li>
+                  <a href="{{ $element.url.site }}">
+                    {{ $element.name }}
+                  </a>
+                  - {{ $element.organization.name }}
+                  - <a href="{{ $element.certificate_url }}">
+                    {{ i18n "certificate" }}
+                  </a>
+                  - {{ dateFormat "2006" $element.end }}
+                </li>
               {{ end }}
             </ul>
           </div>
