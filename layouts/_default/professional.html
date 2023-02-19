@@ -18,7 +18,38 @@
       </div>
     </div>
 
+    {{ with index .Site.Data.professional.education }}
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4 text-center">
+          <h2 id="{{ i18n "education" | urlize }}">
+            {{ i18n "education" }}
+          </h2>
+        </div>
+      </div>
+      {{ range $index, $element := sort . "id" "desc" }}
+        <div class="row">
+          <div class="col-md-8 offset-md-2 gy-4">
+            <h3 id="{{ $element.name | urlize }}">
+              {{ $element.name }}
+            </h3>
+            <p>
+              {{ $element.university }}
+              (<code>{{ dateFormat "2006" $element.start }}</code>,
+              <code>{{ dateFormat "2006" $element.end }}</code>)
+            </p>
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+
     {{ with index .Site.Data.professional.jobs .Site.Language.Lang }}
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4 text-center">
+          <h2 id="{{ i18n "experience" | urlize }}">
+            {{ i18n "experience" }}
+          </h2>
+        </div>
+      </div>
       {{ range $index, $element := sort . "id" "desc" }}
         <div class="row">
           <div class="col-md-8 offset-md-2 gy-4">
@@ -26,7 +57,9 @@
               {{ $element.job }}
             </h3>
             <p>
-              <a href="{{ $element.site }}">{{ $element.name }}</a> (<code>{{ dateFormat "2006-01" $element.start }}</code>, <code>{{ dateFormat "2006-01" $element.end }}</code>)
+              <a href="{{ $element.site }}">{{ $element.name }}</a>
+              (<code>{{ dateFormat "2006-01" $element.start }}</code>,
+              <code>{{ dateFormat "2006-01" $element.end }}</code>)
             </p>
             {{ $element.description | markdownify }}
           </div>
@@ -34,22 +67,20 @@
       {{ end }}
     {{ end }}
 
-    {{ with index .Site.Data.professional.education }}
+    {{ with index .Site.Data.projects .Site.Language.Lang }}
       <div class="row">
-        <div class="col-md-8 offset-md-2 gy-4">
-          <h1 id="{{ i18n "education" | urlize }}">
-            {{ i18n "education" }}
-          </h1>
+        <div class="col-md-8 offset-md-2 gy-5 text-center">
+          <h2>{{ i18n "projects" }}</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4">
           <ul>
-            {{ range $index, $element := sort . "id" "desc" }}
+            {{ range $index, $element := sort . "project" }}
               <li>
-                <a href="{{ $element.site }}">
-                  {{ $element.name }}
-                </a> - {{ $element.university }} - {{ dateFormat "2006" $element.end }}
+                <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}">
+                  {{ $element.project }}
+                </a>: {{ $element.description | markdownify | truncate $.Site.Params.projectDescTruncate }}
               </li>
             {{ end }}
           </ul>
@@ -59,10 +90,10 @@
 
     {{ with index .Site.Data.professional.courses }}
       <div class="row">
-        <div class="col-md-8 offset-md-2 gy-4">
-          <h1 id="{{ i18n "course" | urlize }}">
+        <div class="col-md-8 offset-md-2 gy-4 text-center">
+          <h2 id="{{ i18n "course" | urlize }}">
             {{ i18n "course" }}
-          </h1>
+          </h2>
         </div>
       </div>
       <div class="row">
@@ -70,13 +101,10 @@
           <ul>
             {{ range $index, $element := sort . "name" "asc" }}
               <li>
-                <a href="{{ $element.url.site }}">
+                <a href="{{ $element.certificate_url }}">
                   {{ $element.name }}
                 </a>
                 - {{ $element.organization.name }}
-                - <a href="{{ $element.certificate_url }}" target="_blank">
-                  {{ i18n "certificate" }}
-                </a>
                 - {{ dateFormat "2006" $element.end }}
               </li>
             {{ end }}
