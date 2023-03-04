@@ -18,43 +18,52 @@
       </div>
     </div>
 
+    {{ $counter := 1 }}
     {{ with index .Site.Data.projects .Site.Language.Lang }}
       {{ range $index, $element := sort . "project" "asc" }}
-        <div class="row">
-          <div class="col-md-8 offset-md-2 gy-5">
-            {{ if $element.private }}
-              <span class="badge bg-light text-dark">private</span>
-            {{ end }}
-            {{ if $element.state }}
-              <span class="badge bg-light text-dark">{{ $element.state }}</span>
-            {{ end }}
-            <h2>
-              {{ $element.project }}
-            </h2>
-            <p class="card-text">
-              {{ $element.description | markdownify }}
-            </p>
-            {{ if or $element.repo_host $element.url }}
-              <ul>
-                {{ if and $element.repo_host (not $element.private) }}
-                  <li>
-                    <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}" class="card-link">
-                      {{ $element.user }}/{{ $element.project }}
-                    </a>
-                  </li>
+
+        {{ if eq $counter 1 }}
+          <div class="row">
+        <div class="col-md-4 offset-md-2 gy-4">
+        {{ end }}
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ $element.project }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                {{ range $tec := $element.tecnologies }}
+                  <span class="badge bg-secondary">{{ $tec }}</span>
                 {{ end }}
-                {{ if $element.url }}
-                  <li>
-                    <a href="{{ $element.url }}" class="card-link">
-                      site
-                    </a>
-                  </li>
-                 {{ end }}
-               {{ end }}
-             </ul>
+              </h6>
+              <p class="card-text" style="min-height: 5rem;">
+                {{ $element.description | markdownify }}
+              </p>
+              {{ if $element.url }}
+                <a href="{{ $element.url }}" class="card-link">
+                  site
+                </a>
+              {{ end }}
+              {{ if $element.repo }}
+                <a href="{{ $element.repo }}" class="card-link">
+                  repo
+                </a>
+              {{ end }}
+            </div>
           </div>
-        </div>
-      {{ end }}
+
+        {{ if eq $counter 1 }}
+          </div>
+          <div class="col-md-4 gy-4">
+        {{ end }}
+
+        {{ if eq $counter 2 }}
+          </div>
+         </div>
+          {{ $counter = 0 }}
+        {{ end }}
+        {{ $counter = add $counter 1 }}
+
+        {{ end }}
     {{ end }}
 
     {{ partial "footer.html" . }}
