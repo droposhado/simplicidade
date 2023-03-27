@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    {{ with index .Site.Data.professional.education }}
+    {{ with index .Site.Data.education }}
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4 text-center">
           <h2 id="{{ i18n "education" | urlize }}">
@@ -44,7 +44,7 @@
       {{ end }}
     {{ end }}
 
-    {{ with index .Site.Data.professional.jobs .Site.Language.Lang }}
+    {{ with index .Site.Data.jobs .Site.Language.Lang }}
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4 text-center">
           <h2 id="{{ i18n "experience" | urlize }}">
@@ -90,7 +90,7 @@
       </div>
     {{ end }}
 
-    {{ with index .Site.Data.professional.courses }}
+    {{ with index .Site.Data.courses }}
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4 text-center">
           <h2 id="{{ i18n "course" | urlize }}">
