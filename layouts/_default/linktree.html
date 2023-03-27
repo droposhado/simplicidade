@@ -22,17 +22,17 @@
         <div class="d-grid gap-2">
 
           {{ range $val := $.Site.Params.site }}
-            <a href="{{ $val.url }}" class="btn btn-outline-dark btn-sm {{ if $val.disabled }}disabled{{ end }}" target="_blank" rel="noreferrer">
+            <a href="{{ $val.url }}" class="btn btn-outline-light btn-sm {{ if $val.disabled }}disabled{{ end }}" target="_blank" rel="noreferrer">
               <b>{{ $val.name }}</b>
             </a>
           {{ end }}
 
           {{ range $val := $.Site.Params.social }}
             <a href="{{ $val.url }}/{{ $val.username }}"
-               class="btn btn-outline-dark btn-sm {{ if $val.disabled }}disabled{{ end }}"
+               class="btn btn-outline-light btn-sm {{ if $val.disabled }}disabled{{ end }}"
                target="_blank"
                rel="{{ if eq $val.name "mastodon" }}me{{ else }}noreferrer{{ end }}">
-                <i class="bi bi-{{ $val.icon }}"></i> / <b>{{ $val.username }}</b>
+                {{ $val.name }} / <b>{{ $val.username }}</b>
             </a>
           {{ end }}
 
