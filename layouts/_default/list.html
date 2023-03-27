@@ -3,8 +3,17 @@
 
     {{ partial "translation.html" . }}
     {{ partial "logo.html" . }}
-    {{ partial "nav.html" . }}
+    {{ if .Site.Params.showNav }}
+        {{ partial "nav.html" . }}
+    {{ end }}
 
+    <div class="row">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
+        <h2>
+          {{ $.Page.Title }}
+        </h2>
+      </div>
+    </div>
     {{ $paginator := .Paginate .Data.Pages }}
     {{ range $paginator.Pages.GroupByDate "2006" }}
       <div class="row">
@@ -28,7 +37,7 @@
               {{ if .Params.Categories }}
                 {{ range .Params.Categories }}
                   <a href="{{ "categories/" | absLangURL }}{{ . | urlize }}/">
-                    <span class="badge bg-light text-dark">
+                    <span class="badge text-bg-secondary">
                       {{ . }}
                     </span>
                   </a>

@@ -3,7 +3,9 @@
 
     {{ partial "translation.html" . }}
     {{ partial "logo.html" . }}
-    {{ partial "nav.html" . }}
+    {{ if .Site.Params.showNav }}
+        {{ partial "nav.html" . }}
+    {{ end }}
 
     <div class="row">
       <div class="col-md-8 offset-md-2 gy-4">
@@ -33,7 +35,10 @@
                 <li>
                   <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}">
                     {{ $element.project }}
-                  </a>: {{ $element.description | markdownify | truncate $.Site.Params.projectDescTruncate }}
+                  </a>: 
+                  <small class="text-muted">
+                    {{ $element.description | markdownify | truncate $.Site.Params.projectDescTruncate }}
+                  </small>
                 </li>
               {{ end }}
             {{ end }}
@@ -57,7 +62,9 @@
         <ul class="list-unstyled">
           {{- range first .Site.Params.postsListLimit (where .Paginator.Pages "Params.hidden" "ne" "true") }}
             <li>
-              {{ .Date.Format "2006-01-02" }}
+              <small class="text-muted">
+                {{ .Date.Format "2006-01-02" }}
+              </small>
               <a href="{{ .Permalink }}">
                 {{ .Title }}
               </a>
