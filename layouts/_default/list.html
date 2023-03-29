@@ -17,7 +17,7 @@
     {{ $paginator := .Paginate .Data.Pages }}
     {{ range $paginator.Pages.GroupByDate "2006" }}
       <div class="row">
-        <div class="col-md-8 offset-md-2 gy-4 text-center">
+        <div class="col-md-8 offset-md-2 gy-5 text-center">
           <h2>
             {{ .Key }}
           </h2>
