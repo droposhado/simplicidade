@@ -33,7 +33,7 @@
             {{ range $index, $element := sort . "project" }}
               {{ if lt $index $.Site.Params.projectsListLimit }}
                 <li>
-                  <a href="{{ $element.site }}">
+                  <a href="{{ $element.url }}">
                     {{ $element.name }}
                   </a>: 
                   <small class="text-muted">
