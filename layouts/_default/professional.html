@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    {{ with index .Site.Data.education }}
+    {{ with index .Site.Data.educations .Site.Language.Lang }}
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4 text-center">
           <h2 id="{{ i18n "education" | urlize }}">
@@ -63,7 +63,9 @@
               (<code>{{ dateFormat "2006-01" $element.start }}</code>,
               <code>{{ dateFormat "2006-01" $element.end }}</code>)
             </p>
-            {{ $element.description | markdownify }}
+            {{ range $element.description }}
+              {{ . | markdownify }}
+            {{ end }}
           </div>
         </div>
       {{ end }}
@@ -106,7 +108,7 @@
                 <a href="{{ $element.certificate_url }}">
                   {{ $element.name }}
                 </a>
-                - {{ $element.organization.name }}
+                - {{ $element.organization_name }}
                 - {{ dateFormat "2006" $element.end }}
               </li>
             {{ end }}

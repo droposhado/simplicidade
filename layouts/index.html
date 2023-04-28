@@ -34,7 +34,7 @@
               {{ if lt $index $.Site.Params.projectsListLimit }}
                 <li>
                   <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}">
-                    {{ $element.project }}
+                    {{ $element.name }}
                   </a>: 
                   <small class="text-muted">
                     {{ $element.description | markdownify | truncate $.Site.Params.projectDescTruncate }}

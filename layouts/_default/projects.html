@@ -22,19 +22,21 @@
 
     {{ $counter := 1 }}
     {{ with index .Site.Data.projects .Site.Language.Lang }}
-      {{ range $index, $element := sort . "project" "asc" }}
+      {{ $total := sub (. | len) 1 }}
+
+      {{ range $index, $element := sort . "name" "asc" }}
 
         {{ if eq $counter 1 }}
           <div class="row">
-        <div class="col-md-4 offset-md-2 gy-4">
+            <div class="col-md-4 offset-md-2 gy-4">
         {{ end }}
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">{{ $element.project }}</h5>
+              <h5 class="card-title">{{ $element.name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">
-                {{ range $tec := $element.tecnologies }}
-                  <span class="badge bg-secondary">{{ $tec }}</span>
+                {{ range $element.skill }}
+                  <span class="badge bg-secondary">{{ . }}</span>
                 {{ end }}
               </h6>
               <p class="card-text" style="min-height: 5rem;">
@@ -45,27 +47,29 @@
                   site
                 </a>
               {{ end }}
-              {{ if $element.repo }}
-                <a href="{{ $element.repo }}" class="card-link">
-                  repo
-                </a>
-              {{ end }}
             </div>
           </div>
 
         {{ if eq $counter 1 }}
-          </div>
+            </div>
           <div class="col-md-4 gy-4">
         {{ end }}
 
         {{ if eq $counter 2 }}
-          </div>
-         </div>
+            </div>
+           </div>
           {{ $counter = 0 }}
         {{ end }}
+
+        {{/* if total number is odd, force close in last */}}
+        {{ if eq $total $index }}
+            </div>
+          </div>
+        {{ end }}
+
         {{ $counter = add $counter 1 }}
 
-        {{ end }}
+      {{ end }}
     {{ end }}
 
     {{ partial "footer.html" . }}
