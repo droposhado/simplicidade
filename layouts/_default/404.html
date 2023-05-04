@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <!-- https://stackoverflow.com/a/44801382/6442689 -->
+  <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <a href="/">
+      <img id="logo" src="{{ .Site.Params.notFoundImg }}" alt="image with number
+      404, to represent page not found">
+    </a>
+  </div>
+{{ end }}
