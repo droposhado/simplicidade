@@ -30,10 +30,10 @@
       <div class="row">
         <div class="col-md-8 offset-md-2 gy-4">
           <ul class="list-unstyled">
-            {{ range $index, $element := sort . "project" }}
+            {{ range $index, $element := sort . "name" }}
               {{ if lt $index $.Site.Params.projectsListLimit }}
                 <li>
-                  <a href="{{ $element.repo_host }}/{{ $element.user }}/{{ $element.project }}">
+                  <a href="{{ $element.url }}">
                     {{ $element.name }}
                   </a>: 
                   <small class="text-muted">
