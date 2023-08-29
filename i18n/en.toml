@@ -7,6 +7,9 @@ other = "certificate"
 [course]
 other = "Courses"
 
+[current]
+other = "Currently"
+
 [education]
 other = "Education"
 
