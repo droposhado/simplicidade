@@ -28,7 +28,7 @@
           </h2>
         </div>
       </div>
-      {{ range $index, $element := sort . "id" "desc" }}
+      {{ range $index, $element := sort . "start" "desc" }}
         <div class="row">
           <div class="col-md-8 offset-md-2 gy-4">
             <h3 id="{{ $element.name | urlize }}">
@@ -58,7 +58,7 @@
           </h2>
         </div>
       </div>
-      {{ range $index, $element := sort . "id" "desc" }}
+      {{ range $index, $element := sort . "start" "desc" }}
         <div class="row">
           <div class="col-md-8 offset-md-2 gy-4">
             <h3 id="{{ $element.name | urlize }}-{{ $element.job | urlize }}">
@@ -67,13 +67,7 @@
             <p>
               {{ $element.employer }}
               (<code>{{ dateFormat "2006-01" $element.start }}</code>,
-              <code>
-                {{ if $element.end }}
-                  {{ dateFormat "2006" $element.end }}
-                {{ else }}
-                  {{ i18n "current" }}
-                {{ end }}
-              </code>)
+              <code>{{ if $element.end }}{{ dateFormat "2006-01" $element.end }}{{ else }}{{ i18n "current" }}{{ end }}</code>)
             </p>
             <ul>
               {{ range $element.description }}
@@ -98,9 +92,8 @@
           <ul>
             {{ range $index, $element := sort . "project" }}
               <li>
-                <a href="{{ $element.url }}">
-                  {{ $element.name }}
-                </a>: {{ $element.description | markdownify | truncate $.Site.Params.projectDescTruncate }}
+                <a href="{{ $element.url }}">{{ $element.name }}</a>:
+                {{ $element.description | markdownify }}
               </li>
             {{ end }}
           </ul>

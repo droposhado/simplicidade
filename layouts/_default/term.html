@@ -1,0 +1,59 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ if .Site.Params.showNav }}
+        {{ partial "nav.html" . }}
+    {{ end }}
+
+    <div class="row">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
+        <h2>
+          {{ $.Page.Title }}
+        </h2>
+      </div>
+    </div>
+    {{ $paginator := .Paginate .Data.Pages }}
+    {{ range $paginator.Pages.GroupByDate "2006" }}
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-5 text-center">
+          <h2>
+            {{ .Key }}
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4">
+          {{ range .Pages }}
+            <p>
+              <small class="text-muted">
+                {{ if .Site.Params.dateformShort }}
+                  {{ .Date.Format .Site.Params.dateformShort }}
+                {{ else }}
+                  {{ .Date.Format "Jan 02"}}
+                {{ end }}
+              </small>
+              <a href="{{.Permalink}}">
+                {{.Title}}
+              </a>
+              {{ if .Params.Categories }}
+                {{ range .Params.Categories }}
+                  <a href="{{ "categories/" | absLangURL }}{{ . | urlize }}/"
+                      class="float-end">
+                    <span class="badge text-bg-secondary">
+                      {{ . }}
+                    </span>
+                  </a>
+                {{ end }}
+              {{ end }}
+            </p>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}

@@ -1,0 +1,42 @@
+{{ define "main" }}
+  <div class="container">
+
+    {{ partial "translation.html" . }}
+    {{ partial "logo.html" . }}
+    {{ if .Site.Params.showNav }}
+        {{ partial "nav.html" . }}
+    {{ end }}
+
+    <div class="row">
+      <div class="col-md-8 offset-md-2 gy-4 text-center">
+        <h2>
+          {{ $.Page.Title }}
+        </h2>
+      </div>
+    </div>
+
+    {{ if .Content }}
+      <div class="row">
+        <div class="col-md-8 offset-md-2 gy-4">
+          {{ .Content }}
+        </div>
+      </div>
+    {{ end }}
+
+    <div class="row">
+      <div class="col-md-8 offset-md-2 text-center gy-4">
+        {{ range .Data.Terms }}
+          <a class="btn btn-secondary my-1" href="{{ .Page.RelPermalink }}">
+            {{ .Page.Title }}
+            {{ if $.Site.Params.taxonomy.showTermCount | default true }}
+              <span class="badge text-bg-dark">{{ .Count }}</span>
+            {{ end }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+
+  </div>
+{{ end }}
